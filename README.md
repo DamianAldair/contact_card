@@ -1,5 +1,7 @@
 # Contact Card
 
+by [Damian Aldair](https://github.com/DamianAldair)
+
 A dart library to work with MeCard and vCard in their different versions. Create MeCard or vCard objects from text and vice versa.
 
 Ideal for working in applications using QR readers.

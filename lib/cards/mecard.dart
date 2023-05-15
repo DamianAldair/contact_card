@@ -1,4 +1,4 @@
-import 'package:contact_card/errors.dart';
+import 'package:contact_card/errors/errors.dart';
 
 /// MeCard is a data file similar to vCard
 /// but used by NTT DoCoMo in Japan in QR code format
@@ -33,6 +33,11 @@ class MeCard {
   ///
   /// The canonical number string for a telephone number for telephony communication.
   final List<String>? telephones;
+
+  /// List of contact telephone numbers.
+  ///
+  /// The canonical string for a videophone number communication.
+  final List<String>? videophones;
 
   /// List of contact emails.
   ///
@@ -70,6 +75,7 @@ class MeCard {
     this.organization,
     this.role,
     this.telephones,
+    this.videophones,
     this.emails,
     this.addresses,
     this.urls,
@@ -95,6 +101,7 @@ class MeCard {
     String? organization;
     String? role;
     List<String> telephones = [];
+    List<String> videophones = [];
     List<String> emails = [];
     List<String> addresses = [];
     List<String> urls = [];
@@ -121,6 +128,8 @@ class MeCard {
         role = t.substring(6).trim();
       } else if (t.contains('TEL:')) {
         telephones.add(t.substring(4).trim());
+      } else if (t.contains('TEL-AV:')) {
+        videophones.add(t.substring(7).trim());
       } else if (t.contains('EMAIL:')) {
         emails.add(t.substring(6).trim());
       } else if (t.contains('ADR:')) {
@@ -147,6 +156,7 @@ class MeCard {
       organization: organization,
       role: role,
       telephones: telephones,
+      videophones: videophones,
       emails: emails,
       addresses: addresses,
       urls: urls,
@@ -164,6 +174,7 @@ class MeCard {
     String? organization,
     String? role,
     List<String>? telephones,
+    List<String>? videophones,
     List<String>? emails,
     List<String>? addresses,
     List<String>? urls,
@@ -178,6 +189,7 @@ class MeCard {
         organization: organization ?? this.organization,
         role: role ?? this.role,
         telephones: telephones ?? this.telephones,
+        videophones: videophones ?? this.videophones,
         emails: emails ?? this.emails,
         addresses: addresses ?? this.addresses,
         urls: urls ?? this.urls,
@@ -194,7 +206,8 @@ class MeCard {
     buffer.writeln('Nickname: $nickname');
     buffer.writeln('Organization: $organization');
     buffer.writeln('Role: $role');
-    buffer.writeln('Phones: ${telephones.toString()}');
+    buffer.writeln('Telephones: ${telephones.toString()}');
+    buffer.writeln('Videophones: ${videophones.toString()}');
     buffer.writeln('Emails: ${emails.toString()}');
     buffer.writeln('Addresses: ${addresses.toString()}');
     buffer.writeln('URLs: ${urls.toString()}');
@@ -215,6 +228,11 @@ class MeCard {
     if (telephones != null) {
       for (String t in telephones!) {
         buffer.write('TEL:$t;');
+      }
+    }
+    if (videophones != null) {
+      for (String v in videophones!) {
+        buffer.write('TEL-AV:$v;');
       }
     }
     if (emails != null) {
