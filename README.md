@@ -28,7 +28,7 @@ All done.
 ## Usage
 
 ```dart
-final card = MeCard.fromPlainText(sampleText);
-final plainText = card.toPlainText();
+final MeCard card = MeCard.fromPlainText(sampleText);
+final String plainText = card.toPlainText();
 ```
 
