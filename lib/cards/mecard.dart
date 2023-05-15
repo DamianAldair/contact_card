@@ -103,6 +103,35 @@ class MeCard {
     );
   }
 
+  MeCard copyWith({
+    String? name,
+    String? lastName,
+    String? nickname,
+    String? organization,
+    String? role,
+    List<String>? telephones,
+    List<String>? emails,
+    List<String>? addresses,
+    List<String>? urls,
+    DateTime? birthday,
+    List<MeCardSocialProfile>? socialProfiles,
+    String? note,
+  }) =>
+      MeCard(
+        name: name ?? this.name,
+        lastName: lastName ?? this.lastName,
+        nickname: nickname ?? this.nickname,
+        organization: organization ?? this.organization,
+        role: role ?? this.role,
+        telephones: telephones ?? this.telephones,
+        emails: emails ?? this.emails,
+        addresses: addresses ?? this.addresses,
+        urls: urls ?? this.urls,
+        birthday: birthday ?? this.birthday,
+        socialProfiles: socialProfiles ?? this.socialProfiles,
+        note: note ?? this.note,
+      );
+
   @override
   String toString() {
     final buffer = StringBuffer();
