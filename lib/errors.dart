@@ -1,11 +1,12 @@
-class CardParsingError extends Error {}
+class CardParsingError extends Error {
+  final Object? message;
+  CardParsingError([this.message]);
+}
 
 class MeCardParsingError extends CardParsingError {
-  final Object? message;
-  MeCardParsingError([this.message]);
+  MeCardParsingError([super.message]);
 }
 
 class VCardParsingError extends CardParsingError {
-  final Object? message;
-  VCardParsingError([this.message]);
+  VCardParsingError([super.message]);
 }
