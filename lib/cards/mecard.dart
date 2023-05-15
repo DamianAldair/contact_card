@@ -1,19 +1,68 @@
 import 'package:contact_card/errors.dart';
 
+/// MeCard is a data file similar to vCard
+/// but used by NTT DoCoMo in Japan in QR code format
+/// for use with Cellular Phones.
+///
+/// Example: MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;
+///
+/// https://en.wikipedia.org/wiki/MeCard_(QR_code)
 class MeCard {
+  /// A structured representation of the name of the person.
+  /// When a field is divided by a comma (,),
+  /// the first half is treated as the last name
+  /// and the second half is treated as the first name.
   final String name;
+
+  /// A structured representation of the name of the person.
+  /// When a field is divided by a comma (,),
+  /// the first half is treated as the last name
+  /// and the second half is treated as the first name.
   final String? lastName;
+
+  /// Familiar name for the object represented by this MeCard.
   final String? nickname;
+
+  /// The name of the contact organization.
   final String? organization;
+
+  /// Job title of contact.
   final String? role;
+
+  /// List of contact telephone numbers.
+  ///
+  /// The canonical number string for a telephone number for telephony communication.
   final List<String>? telephones;
+
+  /// List of contact emails.
+  ///
+  /// The address for electronic mail communication.
   final List<String>? emails;
+
+  /// List of contact addresses.
+  ///
+  /// The physical delivery address.
+  /// The fields divided by commas (,)
+  /// denote PO box, room number, house number, city, prefecture, zip code and country, in order.
   final List<String>? addresses;
+
+  /// List of contact URLs.
+  ///
+  /// A URL pointing to a website that represents the person in some way.
   final List<String>? urls;
+
+  /// 8 digits for date of birth: year (4 digits), month (2 digits) and day (2 digits), in order.
   final DateTime? birthday;
+
+  /// List of contact Social Profiles.
+  ///
+  /// In addition to the type of profile, the URL of the profile is indicated.
   final List<MeCardSocialProfile>? socialProfiles;
+
+  /// Specifies supplemental information to be set as memo in the phonebook.
   final String? note;
 
+  /// Default constructor. Only `name` is required.
   MeCard({
     required this.name,
     this.lastName,
@@ -29,6 +78,10 @@ class MeCard {
     this.note,
   });
 
+  /// Constructor from the plain text of the MeCard.
+  ///
+  /// It is important to respect the format of the `MeCard`.
+  /// The `MeCard` format starts with the tag "MECARD:" and ends with a colon (";;").
   factory MeCard.fromPlainText(String plainText) {
     String text = plainText.replaceAll('\n', '');
     if (!text.startsWith('MECARD:') || !text.endsWith(';;')) {
@@ -103,6 +156,7 @@ class MeCard {
     );
   }
 
+  /// Creates a copy of this `MeCard` but with the given fields replaced with the new values.
   MeCard copyWith({
     String? name,
     String? lastName,
@@ -150,6 +204,7 @@ class MeCard {
     return buffer.toString();
   }
 
+  /// A plain text representation of the `MeCard`.
   String toPlainText() {
     final buffer = StringBuffer();
     buffer.write('MECARD:');
@@ -193,8 +248,12 @@ class MeCard {
   }
 }
 
+/// Represents a social profile within `MeCard`.
 class MeCardSocialProfile {
+  /// Profile type. It can be `youtube`, `twitter`, `linkedin`, etc.
   final String type;
+
+  /// Profile URL.
   final String url;
 
   MeCardSocialProfile({
@@ -202,6 +261,7 @@ class MeCardSocialProfile {
     required this.url,
   });
 
+  /// A plain text representation of how the social profile is displayed within the `MeCard`.
   String toPlainText() => 'type=$type:$url';
 
   @override
