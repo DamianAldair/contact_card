@@ -1,6 +1,6 @@
 name: contact_card
 description: A dart library to work with MeCard and vCard in their different versions. Create MeCard or vCard objects from text and vice versa.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/DamianAldair/contact_card
 repository: https://github.com/DamianAldair/contact_card
 

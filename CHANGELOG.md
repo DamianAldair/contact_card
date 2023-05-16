@@ -1,3 +1,7 @@
+## 0.0.3 - Videophone added to MeCard
+
+* Videophone added to MeCard
+
 ## 0.0.2 - Documentation
 
 * MeCard documentation added
