@@ -8,13 +8,13 @@ Ideal for working in applications using QR readers.
 
 ## Features
 
-| Format    | Text to Object | Object to Text |
-|:---------:|:--------------:|:--------------:|
-| MeCard    |       ✅       |       ✅       |
-| vCard 1.0 |       ⌛       |       ⌛       |
-| vCard 2.1 |       ⌛       |       ⌛       |
-| vCard 3.0 |       ⌛       |       ⌛       |
-| vCard 4.0 |       ⌛       |       ⌛       |
+| Format     | Text to Object | Object to Text |
+|:----------:|:--------------:|:--------------:|
+| MeCard 2.1 |       ✅       |       ✅       |
+| vCard 1.0  |       ⌛       |       ⌛       |
+| vCard 2.1  |       ⌛       |       ⌛       |
+| vCard 3.0  |       ⌛       |       ⌛       |
+| vCard 4.0  |       ⌛       |       ⌛       |
 
 ## Getting started
 

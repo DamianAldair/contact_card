@@ -7,6 +7,8 @@ import 'package:contact_card/errors/errors.dart';
 /// Example: MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;
 ///
 /// https://en.wikipedia.org/wiki/MeCard_(QR_code)
+///
+/// This object is a representation of the 2.1 version.
 class MeCard {
   /// A structured representation of the name of the person.
   /// When a field is divided by a comma (,),
@@ -88,10 +90,17 @@ class MeCard {
   ///
   /// It is important to respect the format of the `MeCard`.
   /// The `MeCard` format starts with the tag "MECARD:" and ends with a colon (";;").
-  factory MeCard.fromPlainText(String plainText) {
+  ///
+  /// For versions higher than 1.0, ending with 2 semicolons is not mandatory.
+  /// It is checked by default.
+  /// Set `checkSemicolons` to `false` to skip this check.
+  factory MeCard.fromPlainText(String plainText, {bool checkSemicolons = true}) {
     String text = plainText.replaceAll('\n', '');
-    if (!text.startsWith('MECARD:') || !text.endsWith(';;')) {
-      throw MeCardParsingError('MeCard must start with "MECARD:" and end with ";;".');
+    if (!text.startsWith('MECARD:')) {
+      throw MeCardParsingError('MeCard must start with "MECARD:"');
+    }
+    if (checkSemicolons && !text.endsWith(';;')) {
+      throw MeCardParsingError('MeCard must end with ";;".');
     }
     text = text.substring(7, text.length - 2).trim();
     final texts = text.split(';');

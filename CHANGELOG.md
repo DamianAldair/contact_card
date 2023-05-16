@@ -1,3 +1,8 @@
+## 0.0.4 - MeCard fixes
+
+* Specification that the MeCard being represented is version 2.1
+* Added bool for deciding whether to do a semicolons end check.
+
 ## 0.0.3 - Videophone added to MeCard
 
 * Videophone added to MeCard
