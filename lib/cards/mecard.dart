@@ -267,7 +267,7 @@ class MeCard {
     if (nickname != null) buffer.write('NICKNAME:$nickname;');
     if (socialProfiles != null) {
       for (MeCardSocialProfile s in socialProfiles!) {
-        buffer.write('X-SOCIALPROFILE;${s.toPlainText()};');
+        buffer.write(s.toPlainText());
       }
     }
     buffer.write(';');
@@ -289,7 +289,7 @@ class MeCardSocialProfile {
   });
 
   /// A plain text representation of how the social profile is displayed within the `MeCard`.
-  String toPlainText() => 'type=$type:$url';
+  String toPlainText() => 'X-SOCIALPROFILE;type=$type:$url';
 
   @override
   String toString() => '$type: $url';
