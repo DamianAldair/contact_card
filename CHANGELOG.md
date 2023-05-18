@@ -1,3 +1,10 @@
+## 0.0.5 - VCard 1.0
+
+* vCard 1.0
+    - Convert plain text to dart object
+    - Convert dart object to plain text
+    - copyWith function
+
 ## 0.0.4 - MeCard fixes
 
 * Specification that the MeCard being represented is version 2.1
