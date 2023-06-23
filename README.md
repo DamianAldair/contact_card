@@ -23,7 +23,7 @@ For vCards, the following fields are missing to be implemented:
 - LOGO
 - MEMBER
 - NAME
-- PHOTP
+- PHOTO
 - PRODID
 - RELATED
 - SOUND
